@@ -1,0 +1,10 @@
+#main {
+	margin-top: 50px;
+}
+
+a.page {
+	cursor: default !important;
+}
+a.page:link {
+	color: white !important;
+}
