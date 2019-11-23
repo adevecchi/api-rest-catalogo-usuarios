@@ -1,44 +1,173 @@
-PROBLEMA
-========
-Dado o seguinte log de uma corrida:
+## Instalação:
 
-```text
-Hora                  Piloto                 Nº Volta         Tempo Volta       Velocidade média da volta
-23:49:08.277      038 – F.MASSA                  1             1:02.852                  44,275
-23:49:10.858      033 – R.BARRICHELLO            1             1:04.352                  43,243
-23:49:11.075      002 – K.RAIKKONEN              1             1:04.108                  43,408
-23:49:12.667      023 – M.WEBBER                 1             1:04.414                  43,202
-23:49:30.976      015 – F.ALONSO                 1             1:18.456                  35,47
-23:50:11.447      038 – F.MASSA                  2             1:03.170                  44,053
-23:50:14.860      033 – R.BARRICHELLO            2             1:04.002                  43,48
-23:50:15.057      002 – K.RAIKKONEN              2             1:03.982                  43,493
-23:50:17.472      023 – M.WEBBER                 2             1:04.805                  42,941
-23:50:37.987      015 – F.ALONSO                 2             1:07.011                  41,528
-23:51:14.216      038 – F.MASSA                  3             1:02.769                  44,334
-23:51:18.576      033 – R.BARRICHELLO            3             1:03.716                  43,675
-23:51:19.044      002 – K.RAIKKONEN              3             1:03.987                  43,49
-23:51:21.759      023 – M.WEBBER                 3             1:04.287                  43,287
-23:51:46.691      015 – F.ALONSO                 3             1:08.704                  40,504
-23:52:01.796      011 – S.VETTEL                 1             3:31.315                  13,169
-23:52:17.003      038 – F.MASS                   4             1:02.787                  44,321
-23:52:22.586      033 – R.BARRICHELLO            4             1:04.010                  43,474
-23:52:22.120      002 – K.RAIKKONEN              4             1:03.076                  44,118
-23:52:25.975      023 – M.WEBBER                 4             1:04.216                  43,335
-23:53:06.741      015 – F.ALONSO                 4             1:20.050                  34,763
-23:53:39.660      011 – S.VETTEL                 2             1:37.864                  28,435
-23:54:57.757      011 – S.VETTEL                 3             1:18.097                  35,633
+### Requisitos:
 
+- Composer.
+- PHP.
+- MySQL.
+- Servidor Apache.
+
+### Criação de diretório virtual (Linux):
+
+Abaixo segue os comandos para criação do diretório virtual:
+
+**Comandos:**
+
+```bash
+# cria diretório virtual
+$ sudo mkdir -p /var/www/html/teste.com.br
+
+# Concede permissões
+$ sudo chown -R $USER:$USER /var/www/html/teste.com.br
+
+$ sudo chmod -R 755 /var/www/html/teste.com.br
+
+# Cria novo arquivo Virtual Hosts
+$ sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/teste.com.br.conf
+
+# Abrir arquivo teste.com.br.conf para edição
+$ sudo nano /etc/apache2/sites-available/teste.com.br.conf
 ```
 
-Resultado esperado
-------------------
-* A partir de um input de um arquivo de log do formato acima, montar o resultado da corrida com as seguintes informações: **Posição Chegada**, **Código Piloto**, **Nome Piloto**, **Qtde Voltas Completadas** e **Tempo Total de Prova**.
+Com o arquivo ***teste.com.br.conf*** aberto, apagar seu conteúdo e entrar com o que segue abaixo:
+
+```text
+<VirtualHost *:80>
+	ServerAdmin admin@teste.com.br
+	ServerName teste.com.br
+	ServerAlias www.teste.com.br
+	DocumentRoot /var/www/html/teste.com.br
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+	<Directory /var/www/html/teste.com.br/>
+		Options Indexes FollowSymLinks
+		AllowOverride All
+		Require all granted
+	</Directory>
+</VirtualHost>
+```
+```bash
+# Ativar o Virtual Host
+$ sudo a2ensite teste.com.br.conf
+
+# Reiniciar o Servidor Apache
+$ sudo systemctl restart apache2
+
+# Configurar arquivo de host local
+$ sudo namo /etc/hosts
+```
+Com o arquivo ***hosts*** aberto, adicionar ao final do arquivo o que segue abaixo:
+
+```text
+127.0.0.2   teste.com.br
+```
+
+## Instalação dos arquivos:
+
+Deve-se baixar o arquivo .zip ou realizar a clonagem do repositório.
+
+Tendo os arquivos em sua maquina, deve-se copiar ou mover os arquivos para o diretório ***/var/www/html/teste.com.br***
+
+A estrutua do diretório deve ficar como mostrado abaixo:
+
+```text
+teste.com.br
+|---api/
+|---assets/
+|---.gitignore
+|---.htaccess
+|---add.html
+|---details.html
+|---edit.html
+|---index.html
+|---LICENSE
+|---README.md
+```
+
+**Instalando as dependencias com composer:**
+
+Acessar o diretório ***teste.com.br/api*** e usar o seguinte comando:
+
+```bash
+$ composer install
+```
+
+**Configurando usuário de acesso do Banco de Dados MySQL**
+
+Acessar o diretório ***teste.com.br/api/app/config*** e abrir o arquivo mysql.ini
+
+Seu conteúdo é mostrado abaixo:
+
+```text
+db_host=localhost
+db_name=mobly_teste
+db_utf8=utf8
+db_user=<seu_nome_de_usuario_aqui>
+db_pass=<sua_senha_de_usuario_aqui>
+```
+Apenas deve ser alterado ***db_user*** e ***db_pass*** com os seus valores de acesso para o MySQL
+
+## Documentação:
+
+Antes de executar a Aplicação, deve ser realizado a importação dos dados de usuários e posts.
+
+Para realizar a importação, entre com a URL na barra de endereço do browser:
+
+```text
+teste.com.br/api/database/mysql
+```
+
+Após o acesso ao endereço acima, pode-se acessar a Aplicação na seguinte URL:
+
+```text
+teste.com.br
+```
+
+### Endpoints:
+
+- Importar usuários e posts: `GET /api/database/mysql`
+
+- Todos usuários: `GET /api/users`
+
+- Usuário específico: `GET /api/users/{id}`
+
+- Posts de um usuário: `GET /api/users/{id}/posts`
+
+
+PROBLEMA
+========
+1. Importe usuários e posts de uma API e guarde em um banco de dados MySQL
+1. Possua uma tela para listar os usuários, com ações de adicionar, editar e excluir
+1. Também é necessário ter uma tela de detalhes de usuário, para listar os posts de cada um deles
+1. Tenha APIs que retornem os dados do banco de dados no formato JSON
+   * Todos os usuários: **/users**
+   * Usuário específico: **/users/{id}**
+   * Posts de um usuário: **/users/{id}/posts**
+
+## Fonte dos dados - APIs
+
+**Usuários:**
+http://jsonplaceholder.typicode.com/users
+
+**Posts:**
+http://jsonplaceholder.typicode.com/posts
+
 
 Observações
 ------------
-* A primeira linha do arquivo pode ser desconsiderada (Hora, Piloto, Nº Volta, Tempo Volta, Velocidade média da volta).
-* A corrida termina quando o primeiro colocado completa 4 voltas
+* Inicialmente foi implementado o preencimento automatico de latitude e longitude, porem este recurso só funciona em conexões seguras (https), por este motivo foi removido.
+* Não foi implementado validações de entradas de usuário no formulário no front-end e nem no back-end, sendo que em produção isto é obrigatório.
 
-Captura de tela da solução
---------------------------
-![Classificação da corrida](https://github.com/adevecchi/LogCorrida/blob/master/screenshot.png)
+Captura de telas da solução
+---------------------------
+![Tela de index.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/index.png)
+
+![Tela de add.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/add.png)
+
+![Tela de edit.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/edit.png)
+
+![Tela de delete](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/delete.png)
+
+![Tela de details.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/details1.png)
+
+![Tela de details.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/details2.png)
