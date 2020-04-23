@@ -1,10 +1,4 @@
-### Requisitos:
-
-- Composer
-- PHP
-- MySQL
-
-### Instalação:
+## Instalação:
 
 ```bash
 $ git clone https://github.com/adevecchi/rest-api-slim-php.git
@@ -82,7 +76,8 @@ Captura de telas da solução
 
 ![Tela de details.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/details-2.png)
 
-### Endpoints:
+Endpoints
+---------
 
 - Todos usuários: `GET /users`
 
