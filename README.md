@@ -1,138 +1,54 @@
-## Instalação:
-
 ### Requisitos:
 
-- Composer.
-- PHP.
-- MySQL.
-- Servidor Apache.
+- Composer
+- PHP
+- MySQL
 
-### Criação de diretório virtual (Linux):
-
-Abaixo segue os comandos para criação do diretório virtual:
-
-**Comandos:**
+### Instalação:
 
 ```bash
-# cria diretório virtual
-$ sudo mkdir -p /var/www/html/teste.com.br
-
-# Concede permissões
-$ sudo chown -R $USER:$USER /var/www/html/teste.com.br
-
-$ sudo chmod -R 755 /var/www/html/teste.com.br
-
-# Cria novo arquivo Virtual Hosts
-$ sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/teste.com.br.conf
-
-# Abrir arquivo teste.com.br.conf para edição
-$ sudo nano /etc/apache2/sites-available/teste.com.br.conf
-```
-
-Com o arquivo ***teste.com.br.conf*** aberto, apagar seu conteúdo e entrar com o que segue abaixo:
-
-```text
-<VirtualHost *:80>
-	ServerAdmin admin@teste.com.br
-	ServerName teste.com.br
-	ServerAlias www.teste.com.br
-	DocumentRoot /var/www/html/teste.com.br
-	ErrorLog ${APACHE_LOG_DIR}/error.log
-	CustomLog ${APACHE_LOG_DIR}/access.log combined
-	<Directory /var/www/html/teste.com.br/>
-		Options Indexes FollowSymLinks
-		AllowOverride All
-		Require all granted
-	</Directory>
-</VirtualHost>
-```
-```bash
-# Ativar o Virtual Host
-$ sudo a2ensite teste.com.br.conf
-
-# Reiniciar o Servidor Apache
-$ sudo systemctl restart apache2
-
-# Configurar arquivo de host local
-$ sudo namo /etc/hosts
-```
-Com o arquivo ***hosts*** aberto, adicionar ao final do arquivo o que segue abaixo:
-
-```text
-127.0.0.2   teste.com.br
-```
-
-## Instalação dos arquivos:
-
-Deve-se baixar o arquivo .zip ou realizar a clonagem do repositório.
-
-Tendo os arquivos em sua maquina, deve-se copiar ou mover os arquivos para o diretório ***/var/www/html/teste.com.br***
-
-A estrutua do diretório deve ficar como mostrado abaixo:
-
-```text
-teste.com.br
-|---api/
-|---assets/
-|---.gitignore
-|---.htaccess
-|---add.html
-|---details.html
-|---edit.html
-|---index.html
-|---LICENSE
-|---README.md
-```
-
-**Instalando as dependencias com composer:**
-
-Acessar o diretório ***teste.com.br/api*** e usar o seguinte comando:
-
-```bash
+$ git clone https://github.com/adevecchi/rest-api-slim-php.git
+$ cd rest-api-slim-php
 $ composer install
+$ php -S localhost:8080 -t public
 ```
 
-**Configurando usuário de acesso do Banco de Dados MySQL**
+**Configurando usuário de acesso para o MySQL**
 
-Acessar o diretório ***teste.com.br/api/app/config*** e abrir o arquivo mysql.ini
+Acessar o arquivo ***config/mysql.ini***
 
 Seu conteúdo é mostrado abaixo:
 
 ```text
 db_host=localhost
-db_name=mobly_teste
+db_name=dvq_mob
 db_utf8=utf8
 db_user=<seu_nome_de_usuario_aqui>
 db_pass=<sua_senha_de_usuario_aqui>
 ```
-Apenas deve ser alterado ***db_user*** e ***db_pass*** com os seus valores de acesso para o MySQL
+Apenas deve ser alterado ***db_user*** e ***db_pass*** com os seus valores de acesso para o MySQL.
 
-## Documentação:
+O usuário de acesso do MySQL deve ter permissão para criar novo Banco de Dados e Tabelas, que será utilizado
+para fazer a importação dos dados de uma API externa.
 
-Antes de executar a Aplicação, deve ser realizado a importação dos dados de usuários e posts.
+E a Aplicação Cliente de Exemplo vai acessar os dados importados para o MySQL.
 
-Para realizar a importação, entre com a URL na barra de endereço do browser:
+### Importando os dados da API externa:
 
-```text
-teste.com.br/api/database/mysql
-```
-
-Após o acesso ao endereço acima, pode-se acessar a Aplicação na seguinte URL:
+Entre com a URL na barra de endereço do browser conforme mostrado abaixo:
 
 ```text
-teste.com.br
+localhost:8080/api/create/mysql/database
 ```
 
-### Endpoints:
+Isso vai ter como retorno a seguinte informação (Para usuário com as devidas permissões):
 
-- Importar usuários e posts: `GET /api/database/mysql`
-
-- Todos usuários: `GET /api/users`
-
-- Usuário específico: `GET /api/users/{id}`
-
-- Posts de um usuário: `GET /api/users/{id}/posts`
-
+```json
+{
+    "code": 200,
+    "status": "OK"
+}
+```
 
 PROBLEMA
 ========
@@ -152,22 +68,31 @@ http://jsonplaceholder.typicode.com/users
 **Posts:**
 http://jsonplaceholder.typicode.com/posts
 
-
-Observações
-------------
-* Inicialmente foi implementado o preencimento automatico de latitude e longitude, porem este recurso só funciona em conexões seguras (https), por este motivo foi removido.
-* Não foi implementado validações de entradas de usuário no formulário no front-end e nem no back-end, sendo que em produção isto é obrigatório.
-
 Captura de telas da solução
 ---------------------------
-![Tela de index.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/index.png)
+![Tela de index.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/index.png)
 
-![Tela de add.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/add.png)
+![Tela de add.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/add.png)
 
-![Tela de edit.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/edit.png)
+![Tela de edit.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/edit.png)
 
-![Tela de delete](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/delete.png)
+![Tela de delete](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/delete.png)
 
-![Tela de details.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/details1.png)
+![Tela de details.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/details-1.png)
 
-![Tela de details.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/assets/images/screenshot/details2.png)
+![Tela de details.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/details-2.png)
+
+### Endpoints:
+
+- Todos usuários: `GET /users`
+
+![Tela de add.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/endpoint-users.png)
+
+- Usuário específico: `GET /users/{id}`
+
+![Tela de add.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/endpoint-users-by-id.png)
+
+- Posts de um usuário: `GET /users/{id}/posts`
+
+![Tela de add.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/endpoint-users-by-id-posts.png)
+
