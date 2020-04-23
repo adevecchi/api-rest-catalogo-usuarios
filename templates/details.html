@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>API RESTful Test</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">API RESTful Test</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="javascript:;" class="page">User Details</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="main" class="container-fluid">
+		<h3 class="page-header">User Details #<span id="id"></span></h3>
+  
+		<div class="row">
+			<div class="col-md-3">
+				<p><strong>Name</strong></p>
+				<p><span id="name"></span></p>
+			</div>
+
+			<div class="col-md-3">
+				<p><strong>Username</strong></p>
+				<p><span id="username"></span></p>
+			</div>
+
+			<div class="col-md-3">
+				<p><strong>Email</strong></p>
+				<p><span id="email"></span></p>
+			</div>
+
+			<div class="col-md-3">
+				<p><strong>Street</strong></p>
+				<p><span id="addr_street"></span></p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<p><strong>Suite</strong></p>
+				<p><span id="addr_suite"></span></p>
+			</div>
+
+			<div class="col-md-3">
+				<p><strong>City</strong></p>
+				<p><span id="addr_city"></span></p>
+			</div>
+
+			<div class="col-md-3">
+				<p><strong>Zipcode</strong></p>
+				<p><span id="addr_zipcode"></span></p>
+			</div>
+
+			<div class="col-md-3">
+				<p><strong>Latitude</strong></p>
+				<p><span id="addr_geo_lat"></span></p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<p><strong>Longitude</strong></p>
+				<p><span id="addr_geo_lng"></span></p>
+			</div>
+
+			<div class="col-md-3">
+				<p><strong>Phone</strong></p>
+				<p><span id="phone"></span></p>
+			</div>
+
+			<div class="col-md-3">
+				<p><strong>Website</strong></p>
+				<p><span id="website"></span></p>
+			</div>
+
+			<div class="col-md-3">
+				<p><strong>Company Name</strong></p>
+				<p><span id="co_name"></span></p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<p><strong>Compay Catch Phrase</strong></p>
+				<p><span id="co_catchPhrase"></span></p>
+			</div>
+
+			<div class="col-md-3">
+				<p><strong>Company bs</strong></p>
+				<p><span id="co_bs"></span></p>
+			</div>
+		</div>
+
+		<h3 class="page-header">Posts</h3>
+
+		<div id="list" class="row">
+			<div class="table-responsive col-md-12">
+				<table id="table-list" class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Title</th>
+							<th>Body</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div> <!-- /#list -->
+ 
+		<hr>
+
+		<div id="actions" class="row">
+			<div class="col-md-12">
+				<a href="/" class="btn btn-default">Back</a>
+				<p>&nbsp;</p>
+			</div>
+		</div>
+	</div>
+ 
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+	<script src="/assets/js/app.js"></script>
+	<script>
+		App.page.details();
+	</script>
+</body>
+</html>
