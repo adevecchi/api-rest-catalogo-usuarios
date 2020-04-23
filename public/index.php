@@ -3,7 +3,7 @@
 require '../vendor/autoload.php';
 
 $app = new \Slim\Slim([
-        'debug' => true,
+        'debug' => false,
         'templates.path' => '../templates'
     ]);
 
