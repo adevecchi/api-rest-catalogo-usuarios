@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use \App\Persistence\DB;
-
 class Users extends Models
 {
 	private $db;
@@ -11,7 +9,6 @@ class Users extends Models
 
 	public function __construct()
 	{
-		//$this->dbh = DB::create()->getConnection();
 		parent::__construct();
 
 		$this->db = $this->app->db;
