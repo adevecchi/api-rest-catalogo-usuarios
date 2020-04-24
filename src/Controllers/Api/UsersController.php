@@ -130,8 +130,8 @@ class UsersController extends Controller
 		if ($result) {
 			$res = [
                 'app' => $this->app,
-                'code' => 201,
-                'result' => ['code' => 202, 'status' => 'Accepted']
+                'code' => 200,
+                'result' => ['code' => 200, 'status' => 'Ok']
             ];
 		} else {
 			$res = [
@@ -152,8 +152,8 @@ class UsersController extends Controller
 		if ($result) {
 			$res = [
                 'app' => $this->app,
-                'code' => 204,
-                'result' => ['code' => 204, 'status' => 'No Content', 'message' => 'Deleted']
+                'code' => 200,
+                'result' => ['code' => 200, 'status' => 'Ok']
             ];
 		} else {
 			$res = [
