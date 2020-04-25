@@ -13,7 +13,7 @@ Acessar o arquivo ***config/mysql.ini***
 
 Seu conteúdo é mostrado abaixo:
 
-```text
+```ini
 db_host=localhost
 db_name=dvq_mob
 db_utf8=utf8
@@ -44,7 +44,7 @@ Isso vai ter como retorno a seguinte informação (Para usuário com as devidas 
 }
 ```
 
-PROBLEMA
+Contexto
 ========
 1. Importe usuários e posts de uma API e guarde em um banco de dados MySQL
 1. Possua uma tela para listar os usuários, com ações de adicionar, editar e excluir
@@ -64,6 +64,7 @@ http://jsonplaceholder.typicode.com/posts
 
 Captura de telas da solução
 ---------------------------
+
 ![Tela de index.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/index.png)
 
 ![Tela de add.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/add.png)
