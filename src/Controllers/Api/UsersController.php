@@ -11,19 +11,11 @@ class UsersController extends Controller
 	{
 		$result = (new Users())->getUsers();
 
-		if ($result !== false) {
-			$res = [
-				'app' => $this->app,
-				'code' => 200,
-				'result' => $result
-			];
-		} else {
-			$res = [
-				'app' => $this->app,
-				'code' => 404,
-				'result' => ['code' => 404, 'status' => 'Not Found']
-			];
-		}
+		$res = [
+			'app' => $this->app,
+			'code' => 200,
+			'result' => ($result === false ? [] : $result)
+		];
 
 		$this->app->render('/response/json.php', $res);
 	}
@@ -33,19 +25,11 @@ class UsersController extends Controller
 	{
 		$result = (new Users())->getUser($id);
 
-		if ($result !== false) {
-			$res = [
-                'app' => $this->app,
-                'code' => 200,
-                'result' => $result[0]
-            ];
-		} else {
-			$res = [
-                'app' => $this->app,
-                'code' => 404,
-                'result' => ['code' => 404, 'status' => 'Not Found']
-            ];
-		}
+		$res = [
+			'app' => $this->app,
+			'code' => 200,
+			'result' => ($result === false ? new \StdClass() : $result[0])
+		];
 
 		$this->app->render('/response/json.php', $res);
 	}
@@ -55,19 +39,11 @@ class UsersController extends Controller
 	{
 		$result = (new Users())->getPosts($id);
 
-		if ($result !== false) {
-			$res = [
-				'app' => $this->app,
-                'code' => 200,
-                'result' => $result
-			];
-		} else {
-			$res = [
-				'app' => $this->app,
-                'code' => 404,
-                'result' => ['code' => 404, 'status' => 'Not Found']
-			];
-		}
+		$res = [
+			'app' => $this->app,
+			'code' => 200,
+			'result' => ($result === false ? [] : $result)
+		];
 
 		$this->app->render('/response/json.php', $res);
 	}
@@ -112,8 +88,8 @@ class UsersController extends Controller
 		} else {
             $res = [
                 'app' => $this->app,
-                'code' => 404,
-                'result' => ['code' => 404, 'status' => 'Not Found']
+                'code' => 400,
+                'result' => ['code' => 400, 'status' => 'Bad Request']
             ];
 		}
 
