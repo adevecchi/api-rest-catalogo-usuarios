@@ -82,13 +82,13 @@ Endpoints
 
 - Todos usuários: `GET /users`
 
-![Tela de add.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/endpoint-users.png)
+![Endpoint](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/get-users.png)
 
 - Usuário específico: `GET /users/{id}`
 
-![Tela de add.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/endpoint-users-by-id.png)
+![Endpoint](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/get-users-id.png)
 
 - Posts de um usuário: `GET /users/{id}/posts`
 
-![Tela de add.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/endpoint-users-by-id-posts.png)
+![Endpoint](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/get-users-id-posts.png)
 
