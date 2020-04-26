@@ -1,4 +1,4 @@
-## Instalação:
+## Instalação
 
 ```bash
 $ git clone https://github.com/adevecchi/rest-api-slim-php.git
@@ -62,8 +62,8 @@ http://jsonplaceholder.typicode.com/users
 **Posts:**
 http://jsonplaceholder.typicode.com/posts
 
-Captura de telas da solução
----------------------------
+Captura de tela
+---------------
 
 ![Tela de index.html](https://github.com/adevecchi/rest-api-slim-php/blob/master/public/assets/images/screenshot/index.png)
 
