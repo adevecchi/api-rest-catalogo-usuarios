@@ -4,6 +4,7 @@
 $ git clone https://github.com/adevecchi/rest-api-slim-php.git
 $ cd rest-api-slim-php
 $ composer install
+
 $ php -S localhost:8080 -t public
 ```
 
@@ -25,7 +26,7 @@ Apenas deve ser alterado ***db_user*** e ***db_pass*** com os seus valores de ac
 O usuário de acesso do MySQL deve ter permissão para criar novo Banco de Dados e Tabelas, que será utilizado
 para fazer a importação dos dados de uma API externa.
 
-E a Aplicação Cliente de Exemplo vai acessar os dados importados para o MySQL.
+A aplicação vai gerenciar os dados importados para o MySQL com operações CRUD e disponibilizar uma API com três Endpoints.
 
 ### Importando os dados da API externa:
 
@@ -44,12 +45,14 @@ Isso vai ter como retorno a seguinte informação (Para usuário com as devidas 
 }
 ```
 
-Contexto
-========
-1. Importe usuários e posts de uma API e guarde em um banco de dados MySQL
-1. Possua uma tela para listar os usuários, com ações de adicionar, editar e excluir
-1. Também é necessário ter uma tela de detalhes de usuário, para listar os posts de cada um deles
-1. Tenha APIs que retornem os dados do banco de dados no formato JSON
+# Criação da API e Aplicação
+
+A aplicação de catalogo de usuários vai realizar:
+
+1. Importar usuários e posts de uma API e guardar em um banco de dados MySQL
+1. Possuir uma tela para listar os usuários, com ações de adicionar, editar e excluir
+1. Também vai ter uma tela de detalhes de usuário, para listar os posts de cada um deles
+1. Ter APIs que retornem os dados do banco de dados no formato JSON
    * Todos os usuários: **/users**
    * Usuário específico: **/users/{id}**
    * Posts de um usuário: **/users/{id}/posts**
