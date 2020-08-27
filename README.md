@@ -1,8 +1,8 @@
 ## Instalação
 
 ```bash
-$ git clone https://github.com/adevecchi/rest-api-slim-php.git
-$ cd rest-api-slim-php
+$ git clone https://github.com/adevecchi/api-rest-catalogo-usuarios.git
+$ cd api-rest-catalogo-usuarios
 $ composer install
 
 $ php -S localhost:8080 -t public
